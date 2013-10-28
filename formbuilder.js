@@ -261,20 +261,8 @@
           return this.initAutosave();
         },
         initAutosave: function() {
-          var _this = this;
           this.formSaved = true;
-          this.saveFormButton = this.$el.find(".js-save-form");
-          this.saveFormButton.attr('disabled', true).text(Formbuilder.options.dict.ALL_CHANGES_SAVED);
-          setInterval(function() {
-            return _this.saveForm.call(_this);
-          }, 5000);
-          return $(window).bind('beforeunload', function() {
-            if (_this.formSaved) {
-              return void 0;
-            } else {
-              return Formbuilder.options.dict.UNSAVED_CHANGES;
-            }
-          });
+          return this.saveFormButton = this.$el.find(".js-save-form");
         },
         reset: function() {
           this.$responseFields.html('');

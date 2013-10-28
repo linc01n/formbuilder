@@ -194,14 +194,6 @@ class Formbuilder
       initAutosave: ->
         @formSaved = true
         @saveFormButton = @$el.find(".js-save-form")
-        @saveFormButton.attr('disabled', true).text(Formbuilder.options.dict.ALL_CHANGES_SAVED)
-
-        setInterval =>
-          @saveForm.call(@)
-        , 5000
-
-        $(window).bind 'beforeunload', =>
-          if @formSaved then undefined else Formbuilder.options.dict.UNSAVED_CHANGES
 
       reset: ->
         @$responseFields.html('')
