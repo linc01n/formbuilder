@@ -194,6 +194,7 @@ class Formbuilder
       initAutosave: ->
         @formSaved = true
         @saveFormButton = @$el.find(".js-save-form")
+        @saveFormButton.removeAttr('disabled').text(Formbuilder.options.dict.SAVE_FORM)
 
       reset: ->
         @$responseFields.html('')
@@ -354,13 +355,8 @@ class Formbuilder
         @saveFormButton.removeAttr('disabled').text(Formbuilder.options.dict.SAVE_FORM)
 
       saveForm: (e) ->
-        return if @formSaved
-        @formSaved = true
-        @saveFormButton.attr('disabled', true).text(Formbuilder.options.dict.ALL_CHANGES_SAVED)
         @collection.sort()
         payload = JSON.stringify fields: @collection.toJSON()
-
-        if Formbuilder.options.HTTP_ENDPOINT then @doAjaxSave(payload)
         @formBuilder.trigger 'save', payload
 
       doAjaxSave: (payload) ->
